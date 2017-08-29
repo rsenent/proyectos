@@ -22,14 +22,6 @@ bool consultaExisteJobID(QString jobID);
 
 int main(int argc, char *argv[])
 {
-    /*pid_t pid;
-    pid = fork();
-    if (pid < 0) {
-        exit(10);
-    }
-    if (pid > 0) {
-        exit(0);
-    }*/
     QCoreApplication a(argc, argv);
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     conectarMariaDB(db);

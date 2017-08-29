@@ -24,9 +24,6 @@ int main(int argc, char *argv[])
     exe.start("/opt/printcontrol/apps/trabpend");
     exe.waitForFinished();
     QString jobsid = exe.readAllStandardOutput();
-    //****
-    std::cout << jobsid.toStdString();
-    //****
     QString query = "SELECT job_id FROM cups_trabajos WHERE lower(usuario) = lower(\"";
     query.append(argv[1]);
     query.append("\") AND job_id IN (");
@@ -35,9 +32,6 @@ int main(int argc, char *argv[])
     jobsid.replace("\n","");
     query.append(jobsid);
     query.append(");");
-    //****
-    std::cout << query.toStdString() << endl;
-    //****
     QStringList ip;
     ip << argv[2];
     exe.start("/opt/printcontrol/apps/nombreimp", ip);
@@ -45,10 +39,6 @@ int main(int argc, char *argv[])
     QString nombreImpresora = exe.readAllStandardOutput();
     QByteArray error = exe.readAllStandardError();
     nombreImpresora.replace("\n","");
-    //****
-    std::cout << nombreImpresora.toStdString() << endl;
-    std::cout << error.toStdString() << endl;
-    //****
     conectarMariaDB();
     QSqlQuery consulta;
     consulta.exec(query);
@@ -77,9 +67,3 @@ bool conectarMariaDB()
     }
     return false;
 }
-
-
-
-/*
-SELECT * FROM cups_trabajos WHERE lower(usuario) = lower("ASD") AND job_id IN (1);
-*/
